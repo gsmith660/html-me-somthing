@@ -113,19 +113,19 @@
                                 <ol>
                                     <li><a href="#GetData">Get the Data</a></li>
                                     <li><a href="#SplitData">Split Data into Training and Testing Sets</a></li>
-                                    <li>Explore the data</li>
-                                    <li>Hypothesize models</li>
-                                    <li>Clean/Preprocess the data</li>
+                                    <li><a href="#ExploreData">Explore the Data</a></li>
+                                    <li><a href="#HypothesizeModels">Hypothesize Models</a></li>
+                                    <li><a href="#Preprocessing">Clean/Preprocess the Data</a></li>
                                         <ul>
                                             <li>Deal with missing data</li>
                                             <li>Standardize format</li>
                                             <li>Normalize or other transformations</li>
                                         </ul>
-                                    <li>Optimize Hyperparameters</li>
-                                    <li>Select model or ensemble</li>
-                                    <li>Final evaluation</li>
-                                    <li>Put in use</li>
-                                    <li>Update with new data</li>
+                                    <li><a href="#OptimizeHyperparameters">Optimize Hyperparameters</a></li>
+                                    <li><a href="#ModelSelection">Select Model or Ensemble</a></li>
+                                    <li><a href="#EvaluateModel">Final Evaluation</a></li>
+                                    <li><a href="#UseModel">Put in Use</a></li>
+                                    <li><a href="#UpdateModel">Update with New Data</a></li>
                                 </ol>
                             </nav>
                         </header>
@@ -147,7 +147,7 @@
                                 Note that the first four input properties are numerical while the output is categorical.
                             </p>
                             <p>
-                                In jupyter load the data and separate the input data from the output data using
+                                In jupyter, load the data and separate the input data from the output data using
                                 <pre>
                                     <code>
                                         data = pd.read_csv('iris.data', header=None, names=['SL', 'SW', 'PL', 'PW', 'C'])
@@ -159,6 +159,29 @@
                         </section>
                         <section>
                             <h3 id="#SplitData">Split Data into Training and Testing Sets</h3>
+                            <p>
+                                In order to evaluate how well the machine learned the task, we must set aside some data to be used for testing.
+                                It is important to not look at or use the test data so that the model is not overfit to these specific tests.
+                                Such overfitting would leave us with misplaced confidence in our model when applying it to new data.
+                            </p>
+                            <p>
+                                There is some freedom in how much of the data should be set aside.
+                                A good rule of thumb is to use 20% for testing and 80% for training.
+                                The simplest way to split is with uniform random selection.
+                                However, sometimes it is desirable for the distribution of the test data to match the distribution of all the data.
+                                A stratified split is one which preserves the distribution.
+                            </p>
+                            <p>
+                                In jupyter, we may split the data by selecting 20% uniformly at random using
+                                <pre>
+                                    <code>
+                                        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+                                    </code>
+                                </pre>
+                            </p>
+                        </section>
+                        <section>
+                            <h3 id="#ExploreData">Explore the Data</h3>
                             <p></p>
                         </section>
                     </article>

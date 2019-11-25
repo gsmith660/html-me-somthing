@@ -214,10 +214,26 @@
                                         sns.pairplot(X_train);
                                     </code>
                                 </pre>
+                                The output from <code>.shape</code> tells us there are 120 rows and 4 columns.
+                                The output from the <code>.info()</code> method indicates that all 4 columns are numerical and that none of the entries are missing values.
                                 The pairplot produces looks like
                                 <figure>
                                     <img src="images/basic_pairplot_output.png" alt="Pairplot of Numerical Columns">
                                     <figcaption>Rows and columns of the pairplot are the numerical columns in the DataFrame. Along the diagonal are the histograms for the numerical columns and off the diagonal are scatter plots for each pair of numerical columns.</figcaption>
+                                </figure>
+                            </p>
+                            <p>
+                                In some of the scatter plots we can see clusters to gain a deeper understanding of these patterns we should incorporate the class type of each data point.
+                                The following command will add color to the pairplot, so that the data points for the different species (Setosa, Versicolor, and Virginica) are colored differently.
+                                <pre>
+                                    <code>
+                                        sns.pairplot(pd.concat([X_train, y_train], axis=1), hue='C');
+                                    </code>
+                                </pre>
+                                The output will look like
+                                <figure>
+                                    <img src="images/colored_pairplot_output.png" alt="Pairplot of Numerical Columns With Points Colored by Species">
+                                    <figcaption>Rows and columns of the pairplot are the numerical columns in the DataFrame. Along the diagonal are the histograms for the numerical columns and off the diagonal are scatter plots for each pair of numerical columns. Each point is colored according to the species of that example.</figcaption>
                                 </figure>
                             </p>
                         </section>

@@ -147,14 +147,24 @@
                                 Note that the first four input properties are numerical while the output is categorical.
                             </p>
                             <p>
-                                In jupyter, load the data and separate the input data from the output data using
+                                In jupyter, load the data with using
                                 <pre>
                                     <code>
                                         data = pd.read_csv('iris.data', header=None, names=['SL', 'SW', 'PL', 'PW', 'C'])
-                                        X = data[['SL', 'SW', 'PL', 'PW']].copy()
+                                    </code>
+                                </pre>
+                                Separate the input data from the output data using
+                                <pre>
+                                    <code>
+                                        X = data.drop(['C'], axis=1)
                                         y = data[['C']].copy()
                                     </code>
                                 </pre>
+                                <aside>
+                                    A common warning when working with Pandas DataFrames is "Setting with Copy".
+                                    The <code>.drop()</code> method will return a copy, and no warning is given when modifying.
+                                    The expression <code>data[['C']]</code> also seems to return a copy, but to prevent the warning explicitly use the <code>.copy()</code> method.
+                                </aside>
                             </p>
                         </section>
                         <section>
@@ -169,7 +179,7 @@
                                 A good rule of thumb is to use 20% for testing and 80% for training.
                                 The simplest way to split is with uniform random selection.
                                 However, sometimes it is desirable for the distribution of the test data to match the distribution of all the data.
-                                A stratified split is one which preserves the distribution.
+                                A stratified split can be used to preserve a distribution.
                             </p>
                             <p>
                                 In jupyter, we may split the data by selecting 20% uniformly at random using
@@ -182,7 +192,34 @@
                         </section>
                         <section>
                             <h3 id="#ExploreData">Explore the Data</h3>
-                            <p></p>
+                            <p>
+                                Now that we have data from which the machine is ready to learn, we should explore the data.
+                                The purpose of the exploration is to hypothesize which models and techniques will be the best to use.
+                                Additionally, our goal in this phase is to identify problems with the data such as missing values, typographical errors, inconsistant formatting, outliers, and skewed distributions.
+                            </p>
+                            <p>
+                                There are a handful of simple commands which will provide basic insights into the data.
+                                The <code>.shape</code> property of a pandas DataFrame will display the number of rows and columns.
+                                The <code>.head()</code> method of a DataFrame will display the first 5 rows of data.
+                                The <code>.info()</code> method of a DataFrame is very useful, it will display the data type of each column and give the number of non-missing values in each column.
+                                The <code>.describe()</code> method of a DataFrame will give a statistical summary (mean, standard deviation, min, max, and quartiles) of each numerical data column.
+                                A seaborn function <code>sns.pairplot()</code> will create scatter plots for each pair of numerical columns as well as histograms for each numerical column.
+                                <pre>
+                                    <code>
+                                        print('DataFrame Shape: ', X_train.shape)
+                                        print('\nFirst 5 rows of DataFrame:\n',X_train.head())
+                                        print('\nColumn Data Types and Number of Non-Missing Values:')
+                                        X_train.info()
+                                        print('\nStatistical Summary of Numeric Columns:\n', X_train.describe())
+                                        sns.pairplot(X_train);
+                                    </code>
+                                </pre>
+                                The pairplot produces looks like
+                                <figure>
+                                    <img src="images/basic_pairplot_output.png" alt="Pairplot of Numerical Columns">
+                                    <figcaption>Rows and columns of the pairplot are the numerical columns in the DataFrame. Along the diagonal are the histograms for the numerical columns and off the diagonal are scatter plots for each pair of numerical columns.</figcaption>
+                                </figure>
+                            </p>
                         </section>
                     </article>
                 </section>

@@ -278,6 +278,49 @@
                         </section>
                         <section>
                             <h3 id="#HypothesizeModels">Hypothesize Models</h3>
+                            <p>
+                                Now that we know a bit about the data, we should be able to hypothesize which type of learning techniques could work well.
+                                For the iris data, we are faced with a classification task, namely, given the length and width of the petals and sepals of an iris determine which species it belongs to: setosa, versicolor, or virginica.
+                                For classification we could use almost any method: k-nearest neighbors, naive bayes, logistic regression, support vector machines, decision trees, or neural networks.
+                            </p>
+                            <p>
+                                Our input data is already in the form required for all these methods except for naive bayes which requires Boolean input data.
+                                To avoid the preprocessing needed to convert our numeric data in Boolean data we will not use a naive bayes method.
+                            </p>
+                            <p>
+                                We will try all other methods and see which preforms the best or else combine several into an ensemble.
+                            </p>
+                        </section>
+                        <section>
+                            <h3 id="Preprocessing">Clean/Preprocess the Data</h3>
+                            <p>
+                                One of the most difficult preprocessing steps is not needed since there are no missing values.
+                                Most of the learning techniques will not work when missing data is present.
+                                There are two simple approaches for missing data.
+                                One is to simply remove rows and/or columns with missing data, the drawback here is that data is valuable resource which should not be wasted.
+                                The other simple approach fills missing data entries with the mean, median, or mode.
+                                More complicated approaches could involve additional learning tasks which try to predict the missing values from the known values.
+                            </p>
+                            <p>
+                                All the models we will use require numerical input data.
+                                Since our input data is already numerical we will not need to convert categorical data to numerical data.
+                            </p>
+                            <p>
+                                The only preprocessing which might be appropriate in this example is to apply transformations to the numerical data.
+                                One common transformation is the z-transform which mean centers and normalizes by the standard deviation, the result is comparable to the standard normal distribution.
+                                \[ Z = \frac{X - \mu}{\sigma} \]
+                                Another common transformation is normalize which subtracts the min and divides by the range, the result is contained within the interval \( [0, 1] \).
+                                \[ N = \frac{X - m}{M - m} \]
+                                Other common transformations include \( \ln(X) \) or \( \frac{1}{X} \).
+                            </p>
+                            <p>
+                                The k-nearest neighbors algorithm is sensitive to inconsistant scales along different axes so it could be helpful to normalize or z-transform the data before using this method.
+                                Likewise when training other methods using gradient descent, training time will be greatly reduced by normalizing or z-transforming the data.
+                                Hence, these are the two transformations we will use when preprocessing the data.
+                            </p>
+                        </section>
+                        <section>
+                            <h3 id="OptimizeHyperparameters">Optimize Hyperparameters</h3>
                             <p></p>
                         </section>
                     </article>

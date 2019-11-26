@@ -51,7 +51,7 @@
                         Unsupervised learning seeks to discover patterns in input data.
                         For now these notes will only cover supervised learning.
                         The techniques used for supervised learning problems depend on whether the output data is numerical or categorical.
-                        The task is called regression or classification in the case of numerical or categorical data respectively.
+                        The task is called regression or classification in the case of numerical or categorical data, respectively.
                     </p>
                     <p>
                         The methods used to accomplish a learning task can be classified according to: their ability to update when given additional data and their level of abstractness.
@@ -107,7 +107,7 @@
                                 We will work through a simple data science example to give an overview of the process and ideas.
                                 A well-known source of data sets is the <a href="https://archive.ics.uci.edu/ml/index.php">UCI Machine Learning Repository</a>.
                                 Here we will find the Iris data set, one of the most popular for beginners.
-                                Computations and visualizations will be carried out in <a href="https://jupyter.org/">Jupyter Notebook</a> with <a href="https://www.python.org/">Python</a> using standard packages including <a href="https://numpy.org/">NumPy</a>, <a href="https://pandas.pydata.org/">Pandas</a>, <a href="https://matplotlib.org/">Matplotlib</a>, <a href="https://seaborn.pydata.org/">Seaborn</a>, <a href="https://scikit-learn.org/stable/">SciKit learn</a>, 
+                                Computations and visualizations will be carried out in <a href="https://jupyter.org/">Jupyter Notebook</a> with <a href="https://www.python.org/">Python</a> using standard packages including <a href="https://numpy.org/">NumPy</a>, <a href="https://pandas.pydata.org/">Pandas</a>, <a href="https://matplotlib.org/">Matplotlib</a>, <a href="https://seaborn.pydata.org/">Seaborn</a>, and <a href="https://scikit-learn.org/stable/">SciKit learn</a>.
                             </p>
                             <nav>
                                 <ol>
@@ -161,7 +161,7 @@
                                     </code>
                                 </pre>
                                 <aside>
-                                    A common warning when working with Pandas DataFrames is "Setting with Copy".
+                                    A common warning when working with Pandas DataFrames is "Setting with Copy Warning".
                                     The <code>.drop()</code> method will return a copy, and no warning is given when modifying.
                                     The expression <code>data[['C']]</code> also seems to return a copy, but to prevent the warning explicitly use the <code>.copy()</code> method.
                                 </aside>
@@ -188,6 +188,15 @@
                                         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
                                     </code>
                                 </pre>
+                                Alternatively, if we want the input and output data in the same DataFrame
+                                <pre>
+                                    <code>
+                                        data_train, data_test = train_test_split(data, test_size=0.2, random_state=42)
+                                    </code>
+                                </pre>
+                                <aside>
+                                    As we will see some library functions expect all the data to be in the same DataFrame.
+                                </aside>
                             </p>
                         </section>
                         <section>
@@ -206,12 +215,12 @@
                                 A seaborn function <code>sns.pairplot()</code> will create scatter plots for each pair of numerical columns as well as histograms for each numerical column.
                                 <pre>
                                     <code>
-                                        print('DataFrame Shape: ', X_train.shape)
-                                        print('\nFirst 5 rows of DataFrame:\n',X_train.head())
+                                        print('DataFrame Shape: ', data_train.shape)
+                                        print('\nFirst 5 rows of DataFrame:\n', data_train.head())
                                         print('\nColumn Data Types and Number of Non-Missing Values:')
-                                        X_train.info()
-                                        print('\nStatistical Summary of Numeric Columns:\n', X_train.describe())
-                                        sns.pairplot(X_train);
+                                        data_train.info()
+                                        print('\nStatistical Summary of Numeric Columns:\n', data_train.describe())
+                                        sns.pairplot(data_train);
                                     </code>
                                 </pre>
                                 The output from <code>.shape</code> tells us there are 120 rows and 4 columns.
@@ -219,23 +228,57 @@
                                 The pairplot produces looks like
                                 <figure>
                                     <img src="images/basic_pairplot_output.png" alt="Pairplot of Numerical Columns">
-                                    <figcaption>Rows and columns of the pairplot are the numerical columns in the DataFrame. Along the diagonal are the histograms for the numerical columns and off the diagonal are scatter plots for each pair of numerical columns.</figcaption>
+                                    <figcaption>
+                                        Rows and columns of the pairplot are the numerical columns in the DataFrame. Along the diagonal are the histograms for the numerical columns and off the diagonal are scatter plots for each pair of numerical columns.
+                                    </figcaption>
                                 </figure>
                             </p>
                             <p>
-                                In some of the scatter plots we can see clusters to gain a deeper understanding of these patterns we should incorporate the class type of each data point.
-                                The following command will add color to the pairplot, so that the data points for the different species (Setosa, Versicolor, and Virginica) are colored differently.
+                                When there is no numerical data within a DataFrame <code>.describe()</code> behaves slightly differently.
+                                Furthermore, scatter plots should be replaced with frequency tables, and histograms replaced with countplots.
+                                The code below gives simple insights to the categorical target column of iris-species
                                 <pre>
                                     <code>
+                                        print('DataFrame Shape: ', y_train.shape)
+                                        print('\nFirst 5 rows of DataFrame:\n',y_train.head())
+                                        print('\nColumn Data Types and Number of Non-Missing Values:')
+                                        y_train.info()
+                                        print('\nStatistical Summary of a Categorical Column:\n', y_train.describe())
+                                        y_test.groupby(['C']).size()
+                                        sns.countplot(y_train['C']);
+                                    </code>
+                                </pre>
+                                The <code>.countplot()</code> output looks like
+                                <figure>
+                                    <img src="images/countplot_output.png" alt="Countplot of Categorical Variable">
+                                    <figcaption>
+                                        Plot showing the number of iris of each species.
+                                    </figcaption>
+                                </figure>
+                            </p>
+                            <p>
+                                In some of the scatter plots we can see clusters.
+                                In order to gain a deeper understanding of these patterns we should incorporate the species of each data point.
+                                Either of the following commands will add color to the pairplot, so that the data points for the different species (Setosa, Versicolor, and Virginica) are colored differently.
+                                <pre>
+                                    <code>
+                                        sns.pairplot(data_train, hue='C');
                                         sns.pairplot(pd.concat([X_train, y_train], axis=1), hue='C');
                                     </code>
                                 </pre>
                                 The output will look like
                                 <figure>
                                     <img src="images/colored_pairplot_output.png" alt="Pairplot of Numerical Columns With Points Colored by Species">
-                                    <figcaption>Rows and columns of the pairplot are the numerical columns in the DataFrame. Along the diagonal are the histograms for the numerical columns and off the diagonal are scatter plots for each pair of numerical columns. Each point is colored according to the species of that example.</figcaption>
+                                    <figcaption>
+                                        Rows and columns of the pairplot are the numerical columns in the DataFrame. Along the diagonal are the histograms for the numerical columns and off the diagonal are scatter plots for each pair of numerical columns. Each point is colored according to the species of that example.
+                                    </figcaption>
                                 </figure>
+                                These scatter plots make it clear that we should be able to identify an iris as iris-setosa by measuring its petals and sepals.
                             </p>
+                        </section>
+                        <section>
+                            <h3 id="#HypothesizeModels">Hypothesize Models</h3>
+                            <p></p>
                         </section>
                     </article>
                 </section>

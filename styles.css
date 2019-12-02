@@ -1,7 +1,54 @@
 body {
     max-width: 90%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000000;
     margin: auto;
-    background-color: rgb(36, 36, 36);
-    color: rgb(140, 190, 255);
-    font-size: 100%
+    background-color: #222222;
+    color: #53ceff;
+    font-size: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    border-style: ridge hidden;
+    border-color: #45ff34;
+    background-color: #093306;
+    margin: 25px 50px 25px 0px;
+    text-align: center;
+}
+
+h1 {
+    border-width: 15px;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+h2 {
+    border-width: 10px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+h3 {
+    border-width: 5px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+pre.singleline-code {
+    /*overflow-x: auto;*/
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000000;
+    padding: 0 0 0 50px;
+    white-space: normal;
+}
+
+pre.multiline-code {
+    /*overflow-x: auto;*/
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000000;
+    margin: 0 0 0 -380px;
+    padding: 0 0 0 50px;
 }

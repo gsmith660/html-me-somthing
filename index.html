@@ -147,13 +147,13 @@
                             </p>
                             <p>
                                 In jupyter, load the data with using
-                                <pre>
+                                <pre class="singleline-code">
                                     <code>
                                         data = pd.read_csv('iris.data', header=None, names=['SL', 'SW', 'PL', 'PW', 'C'])
                                     </code>
                                 </pre>
                                 Separate the input data from the output data using
-                                <pre>
+                                <pre class="multiline-code">
                                     <code>
                                         X = data.drop(['C'], axis=1)
                                         y = data[['C']].copy()
@@ -182,13 +182,13 @@
                             </p>
                             <p>
                                 In jupyter, we may split the data by selecting 20% uniformly at random using
-                                <pre>
+                                <pre class="singleline-code">
                                     <code>
                                         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
                                     </code>
                                 </pre>
                                 Alternatively, if we want the input and output data in the same DataFrame
-                                <pre>
+                                <pre class="singleline-code">
                                     <code>
                                         data_train, data_test = train_test_split(data, test_size=0.2, random_state=42)
                                     </code>
@@ -212,7 +212,7 @@
                                 The <code>.info()</code> method of a DataFrame is very useful, it will display the data type of each column and give the number of non-missing values in each column.
                                 The <code>.describe()</code> method of a DataFrame will give a statistical summary (mean, standard deviation, min, max, and quartiles) of each numerical data column.
                                 A seaborn function <code>sns.pairplot()</code> will create scatter plots for each pair of numerical columns as well as histograms for each numerical column.
-                                <pre>
+                                <pre class="multiline-code">
                                     <code>
                                         print('DataFrame Shape: ', data_train.shape)
                                         print('\nFirst 5 rows of DataFrame:\n', data_train.head())
@@ -236,7 +236,7 @@
                                 When there is no numerical data within a DataFrame <code>.describe()</code> behaves slightly differently.
                                 Furthermore, scatter plots should be replaced with frequency tables, and histograms replaced with countplots.
                                 The code below gives simple insights to the categorical target column of iris-species
-                                <pre>
+                                <pre class="multiline-code">
                                     <code>
                                         print('DataFrame Shape: ', y_train.shape)
                                         print('\nFirst 5 rows of DataFrame:\n',y_train.head())
@@ -259,7 +259,7 @@
                                 In some of the scatter plots we can see clusters.
                                 In order to gain a deeper understanding of these patterns we should incorporate the species of each data point.
                                 Either of the following commands will add color to the pairplot, so that the data points for the different species (Setosa, Versicolor, and Virginica) are colored differently.
-                                <pre>
+                                <pre class="multiline-code">
                                     <code>
                                         sns.pairplot(data_train, hue='C');
                                         sns.pairplot(pd.concat([X_train, y_train], axis=1), hue='C');
@@ -323,7 +323,7 @@
                             <p>
                                 The scikit-learn package includes several preprocessing capabilities.
                                 For example the following code will z-transform the training data,
-                                <pre>
+                                <pre class="multiline-code">
                                     <code>
                                         from sklearn.preprocessing import StandardScaler
                                         stdscaler = StandardScaler()
@@ -332,7 +332,7 @@
                                     </code>
                                 </pre>
                                 One of the nice things about implementing the z-transform as a class is that the test data can be transformed using the mean and standard deviation of the training data.
-                                <pre>
+                                <pre class="singleline-code">
                                     <code>
                                         X_test_scaled = pd.DataFrame(stdscaler.transform(X_test), columns = X_test.columns, index=X_test.index)
                                     </code>
@@ -344,7 +344,7 @@
                             <p>
                                 Just to get a feel for things we will train the k-nearest neighbors model with default settings for the hyperparameters.
                                 Using scikit-learn it is very simple to train models, import the class, create an instance, and then call the <code>fit</code> method.
-                                <pre>
+                                <pre class="multiline-code">
                                     <code>
                                         from sklearn.neighbors import KNeighborsClassifier
                                         knn = KNeighborsClassifier()
@@ -375,13 +375,13 @@
                             </p>
                             <p>
                                 The following command will partition the training data into five pieces uniformly at random, train the model on all but one piece, then make predictions for all examples, and finally compute the accuracy metric for both data used to train and the data held out for testing.
-                                <pre>
+                                <pre class="singleline-code">
                                     <code>
                                         cross_validate(knn, X_train, y_train['C'], cv=5, scoring=['accuracy'], return_train_score=True)
                                     </code>
                                 </pre>
                                 The output will contain the following
-                                <pre>
+                                <pre class="multiline-code">
                                     <code>
                                         'test_accuracy': array([0.96      , 1.        , 0.83333333, 1.        , 0.95652174]),
                                         'train_accuracy': array([0.95789474, 0.96875   , 0.98958333, 0.94791667, 0.96907216])
@@ -418,7 +418,7 @@
                             </p>
                             <p>
                                 A first pass could be done with the following commands
-                                <pre>
+                                <pre class="multiline-code">
                                     <code>
                                         hyperparameter_grid = {
                                             'n_neighbors': [1, 3, 5, 9, 13, 19, 25, 33, 41],

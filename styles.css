@@ -5,7 +5,7 @@ body {
     border-color: #000000;
     margin: auto;
     background-color: #222222;
-    color: #53ceff;
+    color: #fffbe5;
     font-size: 100%;
 }
 
@@ -15,6 +15,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #093306;
     margin: 25px 50px 25px 0px;
     text-align: center;
+    color: #5ff0ff;
 }
 
 h1 {
@@ -35,6 +36,22 @@ h3 {
     padding: 10px;
 }
 
+figure {
+    border-style: solid;
+    border-width:1px;
+    border-color: #000000;
+    text-align: center;
+}
+
+figcaption {
+    border-style: solid;
+    border-width:1px;
+    border-color: #000000;
+    text-align: left;
+    margin: auto;
+    padding: auto;
+}
+
 pre.singleline-code {
     /*overflow-x: auto;*/
     border-style: solid;
@@ -51,4 +68,20 @@ pre.multiline-code {
     border-color: #000000;
     margin: 0 0 0 -380px;
     padding: 0 0 0 50px;
+}
+
+#main-nav ul {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000000;
+    padding: 0;
+    text-align: center;
+}
+
+#main-nav ul li {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000000;
+    margin: 0 5px;
+    display: inline;
 }

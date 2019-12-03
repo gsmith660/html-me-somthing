@@ -1,8 +1,8 @@
 body {
     max-width: 90%;
-    /* border-style: solid;
+    border-style: solid;
     border-width: 1px;
-    border-color: #000000; */
+    border-color: #000000;
     margin: auto;
     background-color: #222222;
     color: #fffbe5;
@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5, h6 {
     border-style: ridge hidden;
     border-color: #45ff34;
     background-color: #093306;
-    margin: 25px 50px 25px 0px;
+    margin: 25px 0 25px 0;
     text-align: center;
     color: #5ff0ff;
 }
@@ -45,16 +45,20 @@ a:visited {
 }
 
 figure {
-    /* border-style: solid;
+    border-style: solid;
     border-width:1px;
-    border-color: #000000; */
+    border-color: #000000;
     text-align: center;
 }
 
+img {
+    background-color: #ffffff;
+}
+
 figcaption {
-    /* border-style: solid;
+    border-style: solid;
     border-width:1px;
-    border-color: #000000; */
+    border-color: #000000;
     text-align: left;
     margin: auto;
     padding: auto;
